@@ -1,0 +1,10 @@
+---
+- name: Setup AnsibleDocker on Ubuntu Server
+  hosts: ansibleTerraform
+  become: true
+  remote_user: root
+  roles:
+    - config
+    - addUser
+    - ansibleTerraform
+    

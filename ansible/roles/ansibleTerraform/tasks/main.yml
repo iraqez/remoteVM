@@ -1,0 +1,41 @@
+---
+- name: Install gnupg
+  apt: pkg=gnupg state=latest update_cache=true
+
+- name: Add ansible repository
+  ansible.builtin.apt_repository:
+    repo: ppa:ansible/ansible
+
+- name: add key for terraform
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+
+- name: Add terraform repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com mantic main"
+    state: present
+
+- name: Install dependencies
+  ansible.builtin.apt:
+    name:
+      - ansible
+      - terraform
+      - git
+      - python3
+    state: present
+    update_cache: true
+
+- name: Clone a github repository
+  ansible.builtin.git:
+    repo: https://github.com/iraqez/devops.git
+    dest: /home/iraqez/devops/
+    clone: yes
+    update: yes
+
+- name: Recursively change ownership of a directory
+  ansible.builtin.file:
+    path: /home/iraqez/devops
+    state: directory
+    recurse: yes
+    owner: foo
+    group: foo
