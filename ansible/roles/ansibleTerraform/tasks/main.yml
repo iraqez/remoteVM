@@ -15,7 +15,7 @@
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com mantic main"
     state: present
 
-- name: Install dependencies
+- name: Install ansible&terraform
   ansible.builtin.apt:
     name:
       - ansible
@@ -37,5 +37,5 @@
     path: /home/iraqez/devops
     state: directory
     recurse: yes
-    owner: foo
-    group: foo
+    owner: iraqez
+    group: iraqez
