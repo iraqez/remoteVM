@@ -22,20 +22,27 @@
       - terraform
       - git
       - python3
+      - locales
     state: present
     update_cache: true
 
+- name: Debconf set default locale Ubuntu
+  ansible.builtin.debconf:
+    name: locales
+    question: locales/default_environment_locale
+    value: ru_UA.UTF-8
+    vtype: select
+  when: ansible_distribution == 'Ubuntu'
+
+- name: set as default locale Ubuntu
+  command: localectl set-locale LANG=ru_UA.UTF-8
+  when: ansible_distribution == 'Ubuntu'
+
 - name: Clone a github repository
+  become_user: iraqez
   ansible.builtin.git:
     repo: https://github.com/iraqez/devops.git
     dest: /home/iraqez/devops/
     clone: yes
     update: yes
-
-- name: Recursively change ownership of a directory
-  ansible.builtin.file:
-    path: /home/iraqez/devops
-    state: directory
-    recurse: yes
-    owner: iraqez
-    group: iraqez
+    # force: yes
