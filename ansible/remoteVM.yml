@@ -1,5 +1,5 @@
 ---
-- name: Setup AnsibleDocker on Ubuntu Server
+- name: Setup RemoteVM on Ubuntu Server
   hosts: ansibleTerraform
   become: true
   remote_user: root
@@ -7,4 +7,5 @@
     - config
     - addUser
     - ansibleTerraform
+    - addSshKeys
     

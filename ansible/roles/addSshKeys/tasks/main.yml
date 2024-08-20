@@ -1,0 +1,28 @@
+---
+- name: install ssh server
+  ansible.builtin.apt:
+    name:
+      - openssh-server
+    state: present
+    update_cache: true
+
+- name: Create a directory if it does not exist
+  become_user: iraqez
+  ansible.builtin.file:
+    path: /home/iraqez/.ssh
+    state: directory
+    mode: '0700'
+
+- name: add private key
+  become_user: iraqez
+  ansible.builtin.template:
+    src: ./files/id_rsa
+    dest: /home/iraqez/.ssh/id_rsa
+    mode: preserve
+
+- name: add pub key
+  become_user: iraqez
+  ansible.builtin.template:
+    src: ./files/id_rsa.pub
+    dest: /home/iraqez/.ssh/id_rsa.pub
+    mode: preserve

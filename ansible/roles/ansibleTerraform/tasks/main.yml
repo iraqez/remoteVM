@@ -46,3 +46,12 @@
     clone: yes
     update: yes
     # force: yes
+
+
+
+
+
+# - name: Generete ssh keys
+#   become_user: iraqez
+#   openssh_keypair:
+#     path: /home/iraqez/.ssh/id_ssh_rsa
