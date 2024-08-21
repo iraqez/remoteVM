@@ -10,9 +10,7 @@ resource "proxmox_lxc" "vmRemote" {
   start        = true
   onboot       = true
   vmid         = 100
-  ssh_public_keys = <<EOT
-    ${var.ssh_public_keys}
-  EOT
+  ssh_public_keys = file(var.ssh_public_keys)
   
   rootfs {
     storage    = "slow"

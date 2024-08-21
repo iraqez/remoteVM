@@ -6,6 +6,6 @@
   roles:
     - config
     - addUser
-    - ansibleTerraform
+    # - ansibleTerraform
     - addSshKeys
     

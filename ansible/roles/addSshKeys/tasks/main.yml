@@ -26,3 +26,10 @@
     src: ./files/id_rsa.pub
     dest: /home/iraqez/.ssh/id_rsa.pub
     mode: preserve
+
+- name: add pub key
+  become_user: iraqez
+  ansible.builtin.template:
+    src: /home/iraqez/.ssh/id_rsa.pub
+    dest: /home/iraqez/.ssh/authorized_keys
+    mode: preserve
