@@ -6,6 +6,7 @@
   roles:
     - config
     - addUser
+    - setDefaultLocale
     - ansibleTerraform
     - addSshKeys
     
