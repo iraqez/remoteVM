@@ -1,7 +1,7 @@
 resource "proxmox_lxc" "vmRemote" {
   target_node  = "proxmox"
   hostname     = "vmRemote"
-  ostemplate   = "local:vztmpl/ubuntu-23.10-standard_23.10-1_amd64.tar.zst"
+  ostemplate   = var.ubuntu2404
   password     = var.password
   unprivileged = true
   cores        = 2
@@ -13,7 +13,7 @@ resource "proxmox_lxc" "vmRemote" {
   ssh_public_keys = file(var.ssh_public_keys)
   
   rootfs {
-    storage    = "slow"
+    storage    = "containers"
     size       = "4G"
   }
 
