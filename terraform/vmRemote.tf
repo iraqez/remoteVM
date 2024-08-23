@@ -1,7 +1,7 @@
 resource "proxmox_lxc" "vmRemote" {
   target_node  = "proxmox"
   hostname     = "vmRemote"
-  ostemplate   = var.ubuntu2404
+  ostemplate   = var.ubuntu2310
   password     = var.password
   unprivileged = true
   cores        = 2
