@@ -6,7 +6,7 @@ resource "proxmox_lxc" "vmRemote" {
   unprivileged = true
   cores        = 2
   memory       = 512
-  swap         = 512
+  swap         = 128
   start        = true
   onboot       = true
   vmid         = 100
