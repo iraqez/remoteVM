@@ -20,7 +20,7 @@ resource "proxmox_lxc" "vmRemote" {
   network {
     name       = "eth0"
     bridge     = "vmbr0"
-    ip         = "192.168.10.218/24"
-    gw         = "192.168.10.1"
+    ip         = "10.10.20.20/24"
+    gw         = "10.10.20.254"
   }
 }
