@@ -13,7 +13,7 @@ resource "proxmox_lxc" "vmRemote" {
   ssh_public_keys = file(var.ssh_public_keys)
   
   rootfs {
-    storage    = "containers"
+    storage    = "vmthin433"
     size       = "4G"
   }
 
@@ -22,5 +22,6 @@ resource "proxmox_lxc" "vmRemote" {
     bridge     = "vmbr0"
     ip         = "10.10.20.20/24"
     gw         = "10.10.20.254"
+    tag        = "20"
   }
 }
