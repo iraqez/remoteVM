@@ -2,18 +2,30 @@
 - name: Install gnupg
   apt: pkg=gnupg state=latest update_cache=true
 
-- name: Add ansible repository
-  ansible.builtin.apt_repository:
-    repo: ppa:ansible/ansible
+# - name: Add ansible repository
+#   ansible.builtin.apt_repository:
+#     repo: ppa:ansible/ansible
 
-- name: add key for terraform
-  apt_key:
+- name: Ensure keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Download HashiCorp GPG key
+  ansible.builtin.get_url:
     url: https://apt.releases.hashicorp.com/gpg
+    dest: /etc/apt/keyrings/hashicorp.asc
+    mode: "0644"
 
-- name: Add terraform repository
+- name: Add HashiCorp repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com mantic main"
+    repo: >-
+      deb [signed-by=/etc/apt/keyrings/hashicorp.asc]
+      https://apt.releases.hashicorp.com
+      {{ ansible_distribution_release }} main
     state: present
+    filename: hashicorp
 
 - name: Install ansible&terraform
   ansible.builtin.apt:

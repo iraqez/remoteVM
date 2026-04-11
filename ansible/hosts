@@ -1,5 +1,5 @@
 [all]
-root@192.168.10.218 #vmRemote
+root@10.10.20.20 #vmRemote
 
 [ansibleTerraform]
-root@192.168.10.218 #vmRemote
+root@10.10.20.20 #vmRemote
