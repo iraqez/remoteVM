@@ -5,7 +5,7 @@ resource "proxmox_lxc" "vmRemote" {
   password     = var.password
   unprivileged = true
   cores        = 2
-  memory       = 512
+  memory       = 1024
   swap         = 128
   start        = true
   onboot       = true
@@ -14,7 +14,7 @@ resource "proxmox_lxc" "vmRemote" {
   
   rootfs {
     storage    = "vmthin433"
-    size       = "4G"
+    size       = "8G"
   }
 
   network {
@@ -24,4 +24,9 @@ resource "proxmox_lxc" "vmRemote" {
     gw         = "10.10.20.254"
     tag        = "20"
   }
+
+  features {
+    nesting = true
+  }
+
 }
