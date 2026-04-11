@@ -16,15 +16,15 @@
 - name: add private key
   become_user: iraqez
   ansible.builtin.template:
-    src: ./files/id_rsa
-    dest: /home/iraqez/.ssh/id_rsa
+    src: ./files/id_ed25519
+    dest: /home/iraqez/.ssh/id_ed25519
     mode: preserve
 
 - name: add pub key
   become_user: iraqez
   ansible.builtin.template:
-    src: ./files/id_rsa.pub
-    dest: /home/iraqez/.ssh/id_rsa.pub
+    src: ./files/id_ed25519.pub
+    dest: /home/iraqez/.ssh/id_ed25519.pub
     mode: preserve
 
 - name: add ssh authorized_keys
