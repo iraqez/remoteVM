@@ -18,14 +18,14 @@
   ansible.builtin.template:
     src: ./files/id_ed25519
     dest: /home/iraqez/.ssh/id_ed25519
-    mode: preserve
+    mode: '0600'
 
 - name: add pub key
   become_user: iraqez
   ansible.builtin.template:
     src: ./files/id_ed25519.pub
     dest: /home/iraqez/.ssh/id_ed25519.pub
-    mode: preserve
+    mode: '0644'
 
 - name: add ssh authorized_keys
   become_user: iraqez

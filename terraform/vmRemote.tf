@@ -4,9 +4,9 @@ resource "proxmox_lxc" "vmRemote" {
   ostemplate   = var.ubuntu2504
   password     = var.password
   unprivileged = true
-  cores        = 2
-  memory       = 1024
-  swap         = 128
+  cores        = 4
+  memory       = 4096
+  swap         = 1024
   start        = true
   onboot       = true
   vmid         = 100
@@ -26,6 +26,8 @@ resource "proxmox_lxc" "vmRemote" {
   }
 
   features {
+    fuse    = true
+    keyctl  = true
     nesting = true
   }
 
